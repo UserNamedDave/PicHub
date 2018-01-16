@@ -9,13 +9,13 @@ $rolechoose = $mysqli->real_escape_string($_POST["rolechoose"]);
 $file = $mysqli->real_escape_string($_POST["file"]);
 
  if($rolechoose == "all")
- {$rolechoose = 1;}
+ {$rolechoose = 3;}
 else if($rolechoose == "Specific User")
  {$rolechoose = 2;}
-else {$rolechoose = 3;}
+else {$rolechoose = 1;}
 
-mysql_query ("INSERT INTO tblpost ("title", "description", "restriction", "Picture_pfad")
-VALUES ('$title', '$description', '$rolechoose', '$file')");
+mysqli_query ("INSERT INTO tblpost ('title', 'description', 'restriction', 'Picture_pfad')
+VALUES ("$title", "$description", "$rolechoose", "$file")");
 
 $img = imagecreatefromjpeg($file);
 $path = 'img-down/';

@@ -104,6 +104,45 @@ if (! $_SESSION['user']) {
   }
   }
   ?>
+  <div class ="row">
+	<div class ="col s4">
+		<div class ="card">
+			<div class="card-image">
+				<?php
+				$sql = "SELECT Role_id FROM tbluser
+						WHERE username = '$user'";
+				
+				if ($sql == 1) {
+					
+					$sql = "SELECT Picture_pfad FROM tblpost 
+							WHERE restriction = 1";
+					$mq = mysqli_query($sql) or die ("query not working");
+					$row = mysql_fetch_array($mq) or die("line not working");
+					$s=$row['image'];
+					echo $row['image'];
+					echo '<img src="'.$s.'" alt="HTML5 Icon" style="width:128px;height:128px">';
+				}
+				else if ($sql == 2){
+					
+					$sql = "SELECT * FROM tblpost 
+							WHERE restriction = 2 OR restriction = 3";
+					$mq = mysqli_query($sql) or die ("query not working");
+					$row = mysql_fetch_array($mq) or die("line not working");
+					$s=$row['image'];
+					echo $row['image'];
+					echo '<img src="'.$s.'" alt="HTML5 Icon" style="width:128px;height:128px">';
+				}
+				else {
+					
+					$sql = "SELECT * FROM tblpost 
+							WHERE restriction = 3";
+					$mq = mysqli_query($sql) or die ("query not working");
+					$row = mysql_fetch_array($mq) or die("line not working");
+					$s=$row['image'];
+					echo $row['image'];
+					echo '<img src="'.$s.'" alt="HTML5 Icon" style="width:128px;height:128px">';
+				}
+				?>
     <!-- <div class="row">
       <div class="col s4">
         <div class="card">
